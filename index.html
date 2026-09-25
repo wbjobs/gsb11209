@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>工作流引擎 · DAG 可视化</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header>
+    <h1>工作流引擎</h1>
+    <span class="hint">Web Worker 调度 · Canvas 渲染 · IndexedDB 持久化 · BroadcastChannel 跨页同步</span>
+  </header>
+  <main>
+    <section class="canvas-wrap">
+      <canvas id="canvas"></canvas>
+      <div class="overlay">
+        <span id="run-status" class="status idle">初始化…</span>
+        <span id="fps"></span>
+      </div>
+    </section>
+    <aside>
+      <div class="panel">
+        <h2>控制</h2>
+        <div class="row">
+          <label>并发上限 <input id="concurrency" type="number" value="4" min="1" max="16"></label>
+        </div>
+        <div class="row btns">
+          <button id="btn-start" class="primary">▶ 开始运行</button>
+          <button id="btn-cancel">■ 取消</button>
+        </div>
+        <div class="row btns">
+          <button id="btn-refresh">刷新历史</button>
+          <button id="btn-clear">清空存储</button>
+        </div>
+      </div>
+      <div class="panel">
+        <h2>节点详情 (点击画布节点)</h2>
+        <pre id="node-detail">—</pre>
+      </div>
+      <div class="panel">
+        <h2>历史运行 (IndexedDB)</h2>
+        <ul id="run-list"></ul>
+      </div>
+      <div class="panel grow">
+        <h2>事件日志</h2>
+        <div id="event-log"></div>
+      </div>
+    </aside>
+  </main>
+  <script src="js/dag.js"></script>
+  <script src="js/viz.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

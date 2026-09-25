@@ -1,0 +1,59 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: system-ui, -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
+  background: #f2f4f8;
+  color: #1f2733;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+header {
+  padding: 10px 18px;
+  background: #1f2733;
+  color: #fff;
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+}
+header h1 { font-size: 17px; }
+header .hint { font-size: 12px; color: #9fb0c8; }
+main { flex: 1; display: flex; min-height: 0; }
+.canvas-wrap { flex: 1; position: relative; min-width: 0; }
+#canvas { width: 100%; height: 100%; display: block; cursor: grab; }
+.overlay {
+  position: absolute; top: 10px; left: 12px; right: 12px;
+  display: flex; justify-content: space-between; pointer-events: none;
+}
+.status { padding: 4px 10px; border-radius: 12px; font-size: 12px; background: #e3e8f0; }
+.status.running { background: #fff3d6; color: #9a6a00; }
+.status.success { background: #d9f5e5; color: #177245; }
+.status.failed, .status.deadlocked { background: #ffe0e0; color: #b3261e; }
+.status.timeout, .status.cancelled { background: #ffe9dc; color: #b3500e; }
+#fps { font-size: 12px; color: #667; background: #ffffffcc; padding: 4px 8px; border-radius: 12px; }
+aside {
+  width: 360px; background: #fff; border-left: 1px solid #dde3ec;
+  display: flex; flex-direction: column; overflow-y: auto;
+}
+.panel { padding: 12px 14px; border-bottom: 1px solid #edf0f5; }
+.panel.grow { flex: 1; display: flex; flex-direction: column; min-height: 160px; }
+.panel h2 { font-size: 13px; color: #556; margin-bottom: 8px; }
+.row { margin-bottom: 8px; }
+.row.btns { display: flex; gap: 8px; }
+button {
+  padding: 6px 14px; border: 1px solid #cdd5e0; border-radius: 6px;
+  background: #fff; cursor: pointer; font-size: 13px;
+}
+button:hover { background: #f0f4fa; }
+button.primary { background: #4f8cff; border-color: #4f8cff; color: #fff; }
+button.primary:hover { background: #3b76e8; }
+input[type=number] { width: 56px; padding: 3px 6px; border: 1px solid #cdd5e0; border-radius: 4px; }
+#run-list { list-style: none; font-size: 12px; max-height: 140px; overflow-y: auto; }
+#run-list li { padding: 4px 6px; border-radius: 4px; cursor: pointer; color: #345; }
+#run-list li:hover { background: #eef3fb; }
+#node-detail { font-size: 11px; max-height: 160px; overflow: auto; white-space: pre-wrap; color: #456; }
+#event-log { flex: 1; overflow-y: auto; font-size: 12px; font-family: ui-monospace, monospace; }
+.ev { padding: 2px 4px; border-radius: 3px; }
+.ev-info { color: #345; }
+.ev-warn { color: #9a6a00; }
+.ev-error { color: #b3261e; }
+.ev-debug { color: #889; }
