@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DAG 工作流引擎</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header>
+    <h1>DAG 工作流引擎</h1>
+    <span class="tech">Web Worker · Canvas · IndexedDB · BroadcastChannel</span>
+  </header>
+
+  <main>
+    <section class="panel editor-panel">
+      <h2>DAG 定义（JSON）</h2>
+      <textarea id="dag-input" spellcheck="false"></textarea>
+      <div id="parse-error" class="error"></div>
+      <div class="controls">
+        <label>并发上限
+          <input id="concurrency" type="number" min="1" max="16" value="3" />
+        </label>
+        <button id="btn-validate">校验</button>
+        <button id="btn-run" class="primary">运行</button>
+        <button id="btn-stop" disabled>停止</button>
+        <label class="follow">
+          <input id="follow-remote" type="checkbox" checked /> 跟随其他标签页
+        </label>
+      </div>
+      <pre id="validation-result"></pre>
+      <div id="run-status"></div>
+    </section>
+
+    <section class="panel canvas-panel">
+      <h2>实时运行状态</h2>
+      <div class="legend">
+        <span data-s="pending">pending</span><span data-s="ready">ready</span>
+        <span data-s="running">running</span><span data-s="retrying">retrying</span>
+        <span data-s="success">success</span><span data-s="failed">failed</span>
+        <span data-s="skipped">skipped</span><span data-s="blocked">blocked</span>
+      </div>
+      <div class="canvas-wrap">
+        <canvas id="dag-canvas"></canvas>
+      </div>
+    </section>
+
+    <section class="panel log-panel">
+      <h2>事件日志 <button id="btn-clear-log" class="mini">清空</button></h2>
+      <div id="event-log"></div>
+    </section>
+
+    <section class="panel history-panel">
+      <h2>历史运行（IndexedDB）
+        <span>
+          <button id="btn-refresh-runs" class="mini">刷新</button>
+          <button id="btn-clear-runs" class="mini">清空</button>
+        </span>
+      </h2>
+      <ul id="run-list"></ul>
+    </section>
+  </main>
+
+  <script src="js/dag.js"></script>
+  <script src="js/canvas.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
